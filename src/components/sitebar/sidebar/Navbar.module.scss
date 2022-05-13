@@ -1,0 +1,27 @@
+.navbar {
+    background-color: #171821;
+    border-right: solid 1px #393636;
+
+}
+
+.wrapper {
+    height: 75px;
+    border-bottom: solid 1px #393636;
+
+}
+
+.overview,
+.files,
+.calendar,
+.people,
+.video,
+.setting {
+    margin-top: 10px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.icons {
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+}
