@@ -1,5 +1,5 @@
 import { Header } from './components/Header';
-import { Sitebar } from './components/sitebar/Sitebar';
+import { Sidebar } from './components/sidebar/Sidebar';
 import st from './styles/App.module.scss'
 
 
@@ -8,7 +8,7 @@ export function App() {
     <div className={st.app}>
       <div className={st.container}>
         <Header/>
-        <Sitebar/>
+        <Sidebar/>
       </div>
     </div>
   );
