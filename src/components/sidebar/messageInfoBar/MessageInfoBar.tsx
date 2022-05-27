@@ -1,7 +1,7 @@
 import { Messages } from "./Messages"
 import st from './MessageInfoBar.module.scss'
 import { Chats } from "./chats/Chats"
-import { peoplesType } from "../Sidebar"
+import { peoplesType } from "../../../redux/state"
 
 interface IProps {
     peoples:peoplesType

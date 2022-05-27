@@ -1,6 +1,6 @@
 import { fchownSync } from 'fs';
 import { AvaSvgSelector } from '../../../../assets/icons/AvaSvgSelector';
-import { peoplesType } from '../../Sidebar';
+import { peoplesType } from '../../../../redux/state';
 import st from './Chats.module.scss'
 import { Dialogs } from './Dialogs';
 
