@@ -6,11 +6,16 @@ interface IProps {
 
 }
 
-export const Profile = (props:IProps) => {
+export const Profile = (props: IProps) => {
     return (
         <div className={st.profile}>
-            <YourProfile/>
-            <Posts state={store.getState()} addPost ={store.addPost.bind(store)}/>
+            <YourProfile />
+            <Posts
+                state={store.getState()}
+                addPost={store.addPost.bind(store)}
+                changeTextTitle={store.changeTextTitle.bind(store)}
+                changeTextPost={store.changeTextPost.bind(store)}
+            />
         </div>
     )
 }

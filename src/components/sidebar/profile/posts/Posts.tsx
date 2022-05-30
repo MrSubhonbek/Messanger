@@ -2,10 +2,12 @@ import { Post } from './Post'
 import st from './Posts.module.scss'
 import { IState } from '../../../../redux/state'
 import { GlobalSvgSelector } from '../../../../assets/icons/GlobalSvgSelector'
-import { useState } from 'react'
+import { ChangeEvent, ChangeEventHandler, useState } from 'react'
 interface IProps {
     state: IState
     addPost: ()=>void
+    changeTextTitle: (title:string)=>void
+    changeTextPost: (text:string)=>void
 }
 
 export const Posts = (props: IProps) => {
@@ -15,8 +17,14 @@ export const Posts = (props: IProps) => {
         setAddPost(!addPost)
     }
     const onChangeTitleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        props.state.currentTitleText = e.currentTarget.value
-        console.log(props)
+        props.changeTextTitle(e.currentTarget.value)
+    }
+    const onChangeTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.changeTextPost(e.currentTarget.value)
+    }
+    const addPostHandler = () => {
+        props.addPost();
+        setAddPost(false)
     }
 
     return (
@@ -34,8 +42,9 @@ export const Posts = (props: IProps) => {
                             placeholder='Title'
                             onChange={onChangeTitleHandler}
                             className={st.formField}
+                            value={props.state.currentTitleText}
                         />
-                        <div className={st.sendText} onClick={props.addPost}>
+                        <div className={st.sendText} onClick={addPostHandler}>
                             <GlobalSvgSelector id='send' />
                         </div>
                         <div className={st.sendText} onClick={onClickAddPostHandler}>
@@ -43,7 +52,14 @@ export const Posts = (props: IProps) => {
                         </div>
                     </div>
                     <div className={st.newPost}>
-                        <textarea name="textPost" placeholder='Type your post' rows={10} id=""></textarea>
+                        <textarea 
+                        name="textPost" 
+                        onChange={onChangeTextHandler}
+                        value = {props.state.currentPostText}
+                        placeholder='Type your post' 
+                        rows={10} 
+                        id=""
+                        ></textarea>
                     </div>
                 </div>
             }

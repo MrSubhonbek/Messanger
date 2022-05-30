@@ -1,9 +1,11 @@
 export interface IPosts {
     _state: IState
+    _onChange: () => void
     addPost: () => void
     getState: () => IState
-    _onChange: () => void
-    subscrube: (callback: () => void) => void
+    changeTextTitle: (title: string) => void
+    changeTextPost:(text:string) =>void
+    subscribe: (callback: () => void) => void
 }
 export interface IState {
     posts: Array<IPost>
@@ -34,7 +36,7 @@ export const store: IPosts = {
     _onChange() {
         console.log('state changed')
     },
-    subscrube(callback) {
+    subscribe(callback) {
         this._onChange = callback
     },
     addPost() {
@@ -48,8 +50,17 @@ export const store: IPosts = {
         this._state.posts.push(newPost)
         this._state.currentTitleText = ''
         this._state.currentPostText = ''
+        this._onChange()
         console.log(this.getState())
     },
+    changeTextTitle(title) {
+        this._state.currentTitleText = title
+        this._onChange()
+    },
+    changeTextPost(text) {
+        this._state.currentPostText = text
+        this._onChange()
+    }
 }
 
 
@@ -58,6 +69,7 @@ export const store: IPosts = {
 
 
 export type peoplesType = Array<IContent>
+
 interface IContent {
     id: number,
     img: string,
