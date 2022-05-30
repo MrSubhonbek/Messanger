@@ -6,8 +6,13 @@ import "./styles/index.scss"
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-);
+
+const renderTree = () => {
+  root.render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
+}
+
+renderTree();

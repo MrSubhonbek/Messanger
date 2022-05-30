@@ -1,24 +1,35 @@
+import { IState } from '../../../../redux/state'
 import st from './Post.module.scss'
 
 
 interface IProps {
-    text: string
-    time: string
-    title: string
-  }
+    state: IState
+}
 
 export const Post = (props: IProps) => {
-    
-    return (
-        <div className={st.post}>
-            <div className={st.ava}>Ava</div>
-            <div className={st.wrapperAva}>
-                <div className={st.wrapperText}>
-                    <div className={st.title}>{props.title}</div>
-                    <div className={st.time}>{props.time}</div>
+
+    const posts = props.state.posts.map(
+        (e, index) => {
+            return (
+                <div key={index} className={st.post}>
+                    <div className={st.ava}>Ava</div>
+                    <div className={st.wrapperAva}>
+                        <div className={st.wrapperText}>
+                            <div className={st.title}>{e.title}</div>
+                            <div className={st.time}>{e.time}</div>
+                        </div>
+                        <div className={st.text}>{e.text}</div>
+                    </div>
+
                 </div>
-                <div className={st.text}>{props.text}</div>
-            </div>
+            )
+        }
+    )
+
+
+    return (
+        <div>
+            {posts}
         </div>
     )
 }

@@ -40,15 +40,27 @@ export const GlobalSvgSelector = ({ id }: IProps) => {
                 ;
         case 'call':
             return <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="25" cy="25" r="24" stroke="#474B54" stroke-width="2"/>
-            <path d="M17.5651 17.6517L17.6926 19.2815C18.207 24.9888 26.0672 31.8185 30.9725 32.0934L32.6059 32.1624C33.0823 32.1825 33.396 31.8573 33.3588 31.382L33.0723 28.1549C33.0351 27.6795 32.6683 27.3256 32.1919 27.3055L28.6477 27.0881L27.0376 29.0506C25.8807 29.0017 20.9649 24.2592 20.8746 23.1048L22.8041 21.3249L22.4704 17.9266C22.4332 17.4513 22.0663 17.0973 21.59 17.0772L18.3546 16.9067C17.8416 16.8512 17.4965 17.2089 17.5651 17.6517Z" fill="#1E88E5"/>
+                <circle cx="25" cy="25" r="24" stroke="#474B54" stroke-width="2" />
+                <path d="M17.5651 17.6517L17.6926 19.2815C18.207 24.9888 26.0672 31.8185 30.9725 32.0934L32.6059 32.1624C33.0823 32.1825 33.396 31.8573 33.3588 31.382L33.0723 28.1549C33.0351 27.6795 32.6683 27.3256 32.1919 27.3055L28.6477 27.0881L27.0376 29.0506C25.8807 29.0017 20.9649 24.2592 20.8746 23.1048L22.8041 21.3249L22.4704 17.9266C22.4332 17.4513 22.0663 17.0973 21.59 17.0772L18.3546 16.9067C17.8416 16.8512 17.4965 17.2089 17.5651 17.6517Z" fill="#1E88E5" />
             </svg>
-            ;
+                ;
         case 'send':
             return <svg width="15" height="17" viewBox="0 0 15 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1.70388 1.86396L13.6084 8.95499L1.51511 15.7191L1.70388 1.86396Z" stroke="#25D366" stroke-width="2"/>
+                <path d="M1.70388 1.86396L13.6084 8.95499L1.51511 15.7191L1.70388 1.86396Z" stroke="#25D366" stroke-width="2" />
             </svg>
-            ;
+                ;
+        case 'plus':
+            return <svg width="50" height="50" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M35 22V48" stroke="#B5BFD6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M22 35H48" stroke="#B5BFD6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="35" cy="35" r="34.5" stroke="#B5BFD6" />
+            </svg>;
+        case 'cancel':
+            return <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="1.70711" y1="1.29289" x2="15.8492" y2="15.435" stroke="#D13852" stroke-width="2" />
+                <line x1="1.29289" y1="15.8014" x2="15.435" y2="1.6593" stroke="#D13852" stroke-width="2" />
+            </svg>
+                ;
         default:
             return null
     }

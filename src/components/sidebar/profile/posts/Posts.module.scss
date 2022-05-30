@@ -1,11 +1,66 @@
-.title, .posts {
+.title,
+.posts {
     font-size: 20px;
-    margin: 20px;
     color: white;
     border-bottom: solid 1px #393636;
-    padding: 5px;
     background-color: #171821;
 }
+
+.title {
+    font-size: 25px;
+    height: 75px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.addPost {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.wrapper {
+    padding:  0px 20px 0px 20px;
+    border-bottom: solid 1px #393636;
+}
+.formGroup {
+    display: flex;
+    align-items: center;
+}
+.sendText {
+    margin-top: 20px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+.newPost textarea, .formField {
+    margin-top: 20px;
+    resize: none;
+    overflow: hidden;
+    width: 100%;
+    border: none;
+    outline: none;
+    color: white;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.myPost {
+    margin-left: 20px;
+    width: 100%;
+}
+
+.addPost:hover {
+    background-color: #555;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+}
+
 .posts {
     margin: 0;
 }

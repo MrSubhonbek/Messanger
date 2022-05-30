@@ -1,20 +1,53 @@
 import { Post } from './Post'
 import st from './Posts.module.scss'
-
+import { IState } from '../../../../redux/state'
+import { GlobalSvgSelector } from '../../../../assets/icons/GlobalSvgSelector'
+import { useState } from 'react'
 interface IProps {
-
+    state: IState
+    addPost: ()=>void
 }
-
-const text: string = 'Some Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-const time: string = '10:10'
-const title: string = 'Some Title'
 
 export const Posts = (props: IProps) => {
 
+    const [addPost, setAddPost] = useState<boolean>(false)
+    const onClickAddPostHandler = () => {
+        setAddPost(!addPost)
+    }
+    const onChangeTitleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        props.state.currentTitleText = e.currentTarget.value
+        console.log(props)
+    }
+
     return (
         <div className={st.posts}>
-            <div className={st.title}>My Posts</div>
-            <Post text={text} time={time} title={title} />
+            <div className={st.title}>
+                <div className={st.myPost}>My Posts</div>
+                {!addPost && <div className={st.addPost} onClick={onClickAddPostHandler}><GlobalSvgSelector id={'plus'} /></div>}
+            </div>
+            {
+                addPost &&
+                <div className={st.wrapper}>
+                    <div className={st.formGroup}>
+                        <input
+                            type="text"
+                            placeholder='Title'
+                            onChange={onChangeTitleHandler}
+                            className={st.formField}
+                        />
+                        <div className={st.sendText} onClick={props.addPost}>
+                            <GlobalSvgSelector id='send' />
+                        </div>
+                        <div className={st.sendText} onClick={onClickAddPostHandler}>
+                            <GlobalSvgSelector id='cancel' />
+                        </div>
+                    </div>
+                    <div className={st.newPost}>
+                        <textarea name="textPost" placeholder='Type your post' rows={10} id=""></textarea>
+                    </div>
+                </div>
+            }
+            <Post state={props.state} />
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { GlobalSvgSelector } from '../../../assets/icons/GlobalSvgSelector'
-import { peoples, peoplesType } from '../../../redux/state'
+import { peoplesType } from '../../../redux/state'
 import st from './Messages.module.scss'
 
 interface IProps {
@@ -13,23 +13,29 @@ export const Messages = (props: IProps) => {
     const [dialog, setDialog] = useState(props.peoples)
 
     const printText = dialog[2].dialog.map(
-        e =>(e.who === 'He') ? (<div className={st.dialogMessageHe}>{e.message}</div>): (<div className={st.dialogMessageMe}>{e.message}</div>)
+        (e,index) => (e.who === 'He') ? (<div key={index} className={st.dialogMessageHe}><p>{e.message}</p></div>) : (<div key={index} className={st.dialogMessageMe}><p>{e.message}</p></div>)
     )
-        
+
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setText(e.currentTarget.value)
     }
 
-    const setMessage = (text:string) => {
+
+
+
+    const setMessage = (text: string) => {
+        let date = new Date();
+        let time = String(date.getHours()) + ':' + date.getMinutes();
+        
         let newMessage = {
             who: "You",
             message: text,
-            time: String(Date.now())
+            time: time
         }
 
         let message = dialog[2].dialog
         dialog[2].dialog = [...message, newMessage]
-        
+
         setDialog({ ...dialog })
     }
 
@@ -50,22 +56,20 @@ export const Messages = (props: IProps) => {
                         </div>
                         <div className={st.name}>{dialog[2].name}</div>
                     </div>
-                    <div><GlobalSvgSelector id='call' /></div>
+                    <div className={st.call}><GlobalSvgSelector id='call' /></div>
                 </div>
             </div>
             <div className={st.dialog}>
-                <div>
-                    {printText}
-                </div>
+                {printText}
             </div>
             <div className={st.input}>
                 <div className={st.formGroup}>
-                    <input 
-                    type="text" 
-                    placeholder='Type your message' 
-                    className={st.formField} 
-                    value = {text}
-                    onChange={onChangeHandler}
+                    <input
+                        type="text"
+                        placeholder='Type your message'
+                        className={st.formField}
+                        value={text}
+                        onChange={onChangeHandler}
                     />
                     <div className={st.sendText} onClick={setTaskHandler}>
                         <GlobalSvgSelector id='send' />

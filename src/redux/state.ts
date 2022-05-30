@@ -1,5 +1,63 @@
-export type peoplesType = Array<IContent>
+export interface IPosts {
+    _state: IState
+    addPost: () => void
+    getState: () => IState
+    _onChange: () => void
+    subscrube: (callback: () => void) => void
+}
+export interface IState {
+    posts: Array<IPost>
+    currentTitleText: string
+    currentPostText: string
+}
+interface IPost {
+    text: string
+    time: string
+    title: string
+}
+export const store: IPosts = {
+    _state:
+    {
+        posts: [
+            {
+                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                time: '10:10',
+                title: 'Some Title'
+            },
+        ],
+        currentTitleText: '',
+        currentPostText: '',
+    },
+    getState() {
+        return this._state
+    },
+    _onChange() {
+        console.log('state changed')
+    },
+    subscrube(callback) {
+        this._onChange = callback
+    },
+    addPost() {
+        let date = new Date()
+        let time = String(date.getHours()) + ':' + date.getMinutes();
+        let newPost = {
+            text: this._state.currentPostText,
+            time: time,
+            title: this._state.currentTitleText,
+        }
+        this._state.posts.push(newPost)
+        this._state.currentTitleText = ''
+        this._state.currentPostText = ''
+        console.log(this.getState())
+    },
+}
 
+
+
+
+
+
+export type peoplesType = Array<IContent>
 interface IContent {
     id: number,
     img: string,
@@ -100,3 +158,4 @@ export const peoples: peoplesType = [
         ]
     }
 ]
+
